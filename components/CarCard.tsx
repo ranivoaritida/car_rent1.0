@@ -5,6 +5,7 @@ import Image from 'next/image';
 import CustomButton from './CustomButton';
 import { CarProps } from '@/types';
 import { calculateCarRent } from '@/utils';
+import CarDetails from './CarDetails';
 
 interface CarCardProps{
     car: CarProps;
@@ -15,7 +16,8 @@ const CarCard = ({ car }:CarCardProps) => {
 
     const carRent = calculateCarRent(city_mpg,year);
     
-    const [setIsOpen, setSetIsOpen] = useState(false)
+    const [isOpen, setIsOpen] = useState(false);
+
 
   return (
     <div className='car-card group'>
@@ -66,8 +68,9 @@ const CarCard = ({ car }:CarCardProps) => {
                     handleClick={() => setIsOpen(true)} />
             </div>
         </div>
+        <CarDetails isOpen={isOpen} closeModal={ () => setIsOpen(false)} car={car} />
     </div>
   )
 }
 
-export default CarCard
+export default CarCard;
